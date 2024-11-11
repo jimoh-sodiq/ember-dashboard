@@ -1,8 +1,10 @@
 import {getContacts} from "@/app/dashboard/contacts/lib/data";
+import DashboardPagination from "../../components/DashboardPagination";
+import {IContact} from "@/app/dashboard/contacts/types";
 
 export default async function ContactsTable() {
 
-    const users = await getContacts()
+    const users: IContact[] = await getContacts()
 
     if (!users || users.length === 0) {
         return <div
@@ -45,7 +47,9 @@ export default async function ContactsTable() {
                     </table>
                 </div>
             </div>
-            <div className="p-4 border-t-[1px] border-t-gray-200">Pagination</div>
+            <div className="p-4 border-t-[1px] border-t-gray-200">
+                <DashboardPagination />
+            </div>
         </div>
     )
 }
