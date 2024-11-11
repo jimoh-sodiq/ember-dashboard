@@ -1,36 +1,38 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Live Demo
 
-First, run the development server:
+visit [https://ember-dashboard-nine.vercel.app]
+
+## Local development
+
+First, install and run the development server using pnpm (this is currently better that both npm and yarn):
+[https://pnpm.io/benchmarks]
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app follows the recommended next.js folder structure
+- Every directory in src/app/ acs as a new module
+- since next.js uses colocation, the modules will each have their own components, lib, utils, types etc, directory or files. This will ease managing the project as it grows
+- the src/components/ui contains shared components across the entire app and components from external libraires (shadcn-ui)
+- the src/lib and src/hooks directory contains shared lib utils and hooks across the entire app
 
-## Learn More
+## Data Fetching
 
-To learn more about Next.js, take a look at the following resources:
+Approach used - Streaming using React Server component and Suspense API
+- RSC is used in fetching the contacts for speed improvements. this would make the request lightening fast as it is rendered when the site is built
+- Every request is saved the the respective modules /lib/ directory. (data.ts file) 
+- Loading states is handle using Skeleton as this help give a sense of fast progress to the users
+- error was handled using the recommended error.tsx file for each module, in this case the dashboad holds it in order to catch runtime errors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Improvements
+- the api selected does not include sorting, and pagination.
+- error handling can be handled using an error boundary to prevent error propagation
