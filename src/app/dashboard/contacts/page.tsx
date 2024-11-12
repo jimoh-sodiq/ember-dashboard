@@ -3,6 +3,8 @@ import { Download } from "lucide-react"
 import ContactsTable from "@/app/dashboard/contacts/components/ContactsTable";
 import ContactTableSkeleton from "@/app/dashboard/contacts/components/ContactTableSkeleton";
 
+export const dynamic = "force-dynamic";
+
 export default function ContactsPage() {
 
     return (

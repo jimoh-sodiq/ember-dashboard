@@ -32,6 +32,13 @@ Approach used - Streaming using React Server component and Suspense API
 - Loading states is handle using Skeleton as this help give a sense of fast progress to the users
 - error was handled using the recommended error.tsx file for each module, in this case the dashboad holds it in order to catch runtime errors
 
+## Caching and Pre-rendering Routes
+Due to the aggressive caching in nextjs:
+- Every route is statically rendered by default
+- The contacts table is forced to be dynamically rendered so the most current data is gotten - (using export const dynamic = "force-dynamic") which makes it server rendered on demand
+- another option is to use no-cache in the fetch call as an init option.
+- for the purpose of this I chose to make the page dynamic so the loading states and error states can be seen
+
 
 ## Improvements
 - the api selected does not include sorting, and pagination.
